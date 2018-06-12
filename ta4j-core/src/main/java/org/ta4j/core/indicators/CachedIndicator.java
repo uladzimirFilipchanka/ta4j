@@ -47,6 +47,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
      * I.E. the last calculated result.
      */
     protected int highestResultIndex = -1;
+    private int resolvedTimeFrame = -1;
     
     /**
      * Constructor.
@@ -77,8 +78,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
         // Series is not null
         
         final int removedTicksCount = series.getRemovedTicksCount();
-        final int maximumResultCount = series.getMaximumTickCount();
-        
+        final int maximumResultCount = getMaximumResultCount(series);
         T result;
         if (index < removedTicksCount) {
             // Result already removed from cache
@@ -104,6 +104,12 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
             } else {
                 // Result covered by current cache
                 int resultInnerIndex = results.size() - 1 - (highestResultIndex - index);
+                if (resultInnerIndex < 0) {
+                    results.addAll(0, Collections.<T>nCopies(Math.abs(resultInnerIndex), null));
+                    resultInnerIndex = 0;
+                    result = calculate(index);
+                    results.set(resultInnerIndex, result);
+                }
                 result = results.get(resultInnerIndex);
                 if (result == null) {
                     result = calculate(index);
@@ -112,6 +118,25 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
             }
         }
         return result;
+    }
+
+    private int getMaximumResultCount(TimeSeries series) {
+        if (resolvedTimeFrame == -1) {
+            resolvedTimeFrame = getTimeframe();
+        }
+        return resolvedTimeFrame != 0 ? resolvedTimeFrame : series.getMaximumTickCount();
+//        return series.getMaximumTickCount();
+    }
+
+    private Integer getTimeframe() {
+        Field field;
+        try {
+            field = this.getClass().getDeclaredField("timeFrame");
+            field.setAccessible(true);
+            return (Integer) field.get(this);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            return 0;
+        }
     }
 
     /**
@@ -127,18 +152,33 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
      */
     private void increaseLengthTo(int index, int maxLength) {
         if (highestResultIndex > -1) {
-            int newResultsCount = Math.min(index-highestResultIndex, maxLength);
-            if (newResultsCount == maxLength) {
-                results.clear();
-                results.addAll(Collections.<T> nCopies(maxLength, null));
-            } else if (newResultsCount > 0) {
-                results.addAll(Collections.<T> nCopies(newResultsCount, null));
-                removeExceedingResults(maxLength);
+            if (resolvedTimeFrame <= 0) {
+                int newResultsCount = Math.min(index - highestResultIndex, maxLength);
+                if (newResultsCount == maxLength) {
+                    results.clear();
+                    results.addAll(Collections.<T>nCopies(maxLength, null));
+                } else if (newResultsCount > 0) {
+                    results.addAll(Collections.<T>nCopies(newResultsCount, null));
+                    removeExceedingResults(maxLength);
+                }
+            } else {
+                int newResultsCount = index - highestResultIndex;
+                if (newResultsCount > 0) {
+                    results.addAll(Collections.<T>nCopies(newResultsCount, null));
+                    removeExceedingResults(maxLength);
+                }
             }
         } else {
             // First use of cache
             assert results.isEmpty() : "Cache results list should be empty";
-            results.addAll(Collections.<T> nCopies(Math.min(index+1, maxLength), null));
+
+            // workaround for indicators which use timeframe based size and use back-walking (index greater than
+            // timeFrame)
+            if (resolvedTimeFrame > 0) {
+                results.addAll(Collections.<T>nCopies(Math.max(index + 1, maxLength), null));
+            } else {
+                results.addAll(Collections.<T>nCopies(Math.min(index + 1, maxLength), null));
+            }
         }
     }
 
