@@ -46,11 +46,11 @@ public class RSIIndicator extends CachedIndicator<Decimal> {
     
     public RSIIndicator(Indicator<Decimal> indicator, int timeFrame) {
         this(new AverageGainIndicator(indicator, timeFrame),
-                new AverageLossIndicator(indicator, timeFrame));
+                new AverageLossIndicator(indicator, timeFrame), timeFrame);
     }
 
-    public RSIIndicator(Indicator<Decimal> avgGainIndicator, Indicator<Decimal> avgLossIndicator) {
-        super(avgGainIndicator);
+    public RSIIndicator(Indicator<Decimal> avgGainIndicator, Indicator<Decimal> avgLossIndicator, int timeFrame) {
+        super(avgGainIndicator, timeFrame);
         averageGainIndicator = avgGainIndicator;
         averageLossIndicator = avgLossIndicator;
     }

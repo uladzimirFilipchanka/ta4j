@@ -51,7 +51,7 @@ public class DojiIndicator extends CachedIndicator<Boolean> {
      * @param bodyFactor the factor used when checking if a candle is Doji
      */
     public DojiIndicator(TimeSeries series, int timeFrame, Decimal bodyFactor) {
-        super(series);
+        super(series, timeFrame);
         bodyHeightInd = new AbsoluteIndicator(new RealBodyIndicator(series));
         averageBodyHeightInd = new SMAIndicator(bodyHeightInd, timeFrame);
         factor = bodyFactor;

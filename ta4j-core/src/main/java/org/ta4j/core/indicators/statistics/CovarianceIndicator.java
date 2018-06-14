@@ -37,8 +37,6 @@ public class CovarianceIndicator extends CachedIndicator<Decimal> {
     
     private Indicator<Decimal> indicator2;
 
-    private int timeFrame;
-
     private SMAIndicator sma1;
     
     private SMAIndicator sma2;
@@ -50,10 +48,9 @@ public class CovarianceIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public CovarianceIndicator(Indicator<Decimal> indicator1, Indicator<Decimal> indicator2, int timeFrame) {
-        super(indicator1);
+        super(indicator1, timeFrame);
         this.indicator1 = indicator1;
         this.indicator2 = indicator2;
-        this.timeFrame = timeFrame;
         sma1 = new SMAIndicator(indicator1, timeFrame);
         sma2 = new SMAIndicator(indicator2, timeFrame);
     }

@@ -35,13 +35,11 @@ public class DirectionalUpIndicator extends CachedIndicator<Decimal>{
 
     private final Indicator<Decimal> admup;
     private final Indicator<Decimal> atr;
-    private int timeFrame;
 
     public DirectionalUpIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         this.admup = new AverageDirectionalMovementUpIndicator(series, timeFrame);
         this.atr = new AverageTrueRangeIndicator(series, timeFrame);
-        this.timeFrame = timeFrame;
     }
 
     @Override

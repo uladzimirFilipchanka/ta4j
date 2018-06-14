@@ -60,8 +60,6 @@ public class PeriodicalGrowthRateIndicator extends CachedIndicator<Decimal> {
       
     private final Indicator<Decimal> indicator;
 
-    private final int timeFrame;
-    
     /**
      * Constructor.
      * Example: use timeFrame = 251 and "end of day"-ticks for annual behaviour
@@ -70,7 +68,7 @@ public class PeriodicalGrowthRateIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame 
      */
     public PeriodicalGrowthRateIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
         this.timeFrame = timeFrame; 
     }

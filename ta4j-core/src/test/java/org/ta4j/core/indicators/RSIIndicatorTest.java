@@ -75,7 +75,7 @@ public class RSIIndicatorTest {
     
     @Test
     public void rsiCalculationFromMockedGainsAndLosses() {
-        RSIIndicator rsiCalc = new RSIIndicator(gains, losses);
+        RSIIndicator rsiCalc = new RSIIndicator(gains, losses, 14);
 
         assertDecimalEquals(rsiCalc.getValue(2), 80.0);
         assertDecimalEquals(rsiCalc.getValue(3), 84.0);
@@ -92,7 +92,7 @@ public class RSIIndicatorTest {
     
     @Test
     public void rsiCalcFirstValueShouldBeZero() {
-        RSIIndicator rsiCalc = new RSIIndicator(gains, losses);
+        RSIIndicator rsiCalc = new RSIIndicator(gains, losses, 14);
         assertEquals(Decimal.ZERO, rsiCalc.getValue(0));
     }
 
@@ -105,7 +105,7 @@ public class RSIIndicatorTest {
 
     @Test
     public void rsiCalcHundredIfNoLoss() {
-        RSIIndicator rsiCalc = new RSIIndicator(gains, losses);
+        RSIIndicator rsiCalc = new RSIIndicator(gains, losses, 14);
         assertEquals(Decimal.HUNDRED, rsiCalc.getValue(1));
     }
 }

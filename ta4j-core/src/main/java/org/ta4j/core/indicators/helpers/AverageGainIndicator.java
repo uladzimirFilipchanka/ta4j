@@ -34,12 +34,9 @@ public class AverageGainIndicator extends CachedIndicator<Decimal> {
 
     private final CumulatedGainsIndicator cumulatedGains;
 
-    private final int timeFrame;
-
     public AverageGainIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.cumulatedGains = new CumulatedGainsIndicator(indicator, timeFrame);
-        this.timeFrame = timeFrame;
     }
 
     @Override

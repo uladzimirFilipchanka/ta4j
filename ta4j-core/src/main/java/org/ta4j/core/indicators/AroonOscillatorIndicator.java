@@ -35,11 +35,9 @@ public class AroonOscillatorIndicator extends CachedIndicator<Decimal>{
 
     private final AroonDownIndicator aroonDownIndicator;
     private final AroonUpIndicator aroonUpIndicator;
-    private final int timeFrame;
 
     public AroonOscillatorIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         aroonDownIndicator = new AroonDownIndicator(series, timeFrame);
         aroonUpIndicator = new AroonUpIndicator(series, timeFrame);
     }

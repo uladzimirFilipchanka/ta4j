@@ -41,7 +41,7 @@ public class MVWAPIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public MVWAPIndicator(VWAPIndicator vwap, int timeFrame) {
-        super(vwap);
+        super(vwap, timeFrame);
         sma = new SMAIndicator(vwap, timeFrame);
     }
 

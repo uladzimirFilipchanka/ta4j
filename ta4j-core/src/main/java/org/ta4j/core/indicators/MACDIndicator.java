@@ -36,7 +36,7 @@ public class MACDIndicator extends CachedIndicator<Decimal> {
     private final EMAIndicator longTermEma;
 
     public MACDIndicator(Indicator<Decimal> indicator, int shortTimeFrame, int longTimeFrame) {
-        super(indicator);
+        super(indicator, longTimeFrame);
         if (shortTimeFrame > longTimeFrame) {
             throw new IllegalArgumentException("Long term period count must be greater than short term period count");
         }

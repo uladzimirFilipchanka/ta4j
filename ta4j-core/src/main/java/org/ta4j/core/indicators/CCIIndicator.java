@@ -42,19 +42,16 @@ public class CCIIndicator extends CachedIndicator<Decimal> {
 
     private MeanDeviationIndicator meanDeviationInd;
 
-    private int timeFrame;
-
     /**
      * Constructor.
      * @param series the time series
      * @param timeFrame the time frame
      */
     public CCIIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         typicalPriceInd = new TypicalPriceIndicator(series);
         smaInd = new SMAIndicator(typicalPriceInd, timeFrame);
         meanDeviationInd = new MeanDeviationIndicator(typicalPriceInd, timeFrame);
-        this.timeFrame = timeFrame;
     }
 
     @Override

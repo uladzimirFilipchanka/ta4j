@@ -37,16 +37,13 @@ public class SimpleLinearRegressionIndicator extends CachedIndicator<Decimal> {
 
     private Indicator<Decimal> indicator;
     
-    private int timeFrame;
-    
     private Decimal slope;
     
     private Decimal intercept;
     
     public SimpleLinearRegressionIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
     }
 
     @Override

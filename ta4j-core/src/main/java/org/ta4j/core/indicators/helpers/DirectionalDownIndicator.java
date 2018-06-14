@@ -35,13 +35,11 @@ public class DirectionalDownIndicator extends CachedIndicator<Decimal>{
 
     private final Indicator<Decimal> admdown;
     private final Indicator<Decimal> atr;
-    private final int timeFrame;
 
     public DirectionalDownIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         this.admdown = new AverageDirectionalMovementDownIndicator(series, timeFrame);
         this.atr = new AverageTrueRangeIndicator(series, timeFrame);
-        this.timeFrame = timeFrame;
     }
 
     @Override

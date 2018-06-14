@@ -41,8 +41,6 @@ private final MaxPriceIndicator maxPrice;
     
     private final Decimal sqrtTimeFrame;
     
-    private final int timeFrame;
-    
     /**
      * Constructor.
      *
@@ -50,8 +48,7 @@ private final MaxPriceIndicator maxPrice;
      * @param timeFrame the time frame
      */
     public RandomWalkIndexLowIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         maxPrice = new MaxPriceIndicator(series);
         minPrice = new MinPriceIndicator(series);
         averageTrueRange = new AverageTrueRangeIndicator(series, timeFrame);

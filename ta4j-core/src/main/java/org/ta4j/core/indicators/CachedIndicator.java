@@ -47,7 +47,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
      * I.E. the last calculated result.
      */
     protected int highestResultIndex = -1;
-    private int resolvedTimeFrame = -1;
+    protected int timeFrame = -1;
     
     /**
      * Constructor.
@@ -63,6 +63,16 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
      */
     public CachedIndicator(Indicator indicator) {
         this(indicator.getTimeSeries());
+    }
+
+    public CachedIndicator(TimeSeries series, int timeFrame) {
+        super(series);
+        this.timeFrame = timeFrame;
+    }
+
+    public CachedIndicator(Indicator indicator, int timeFrame) {
+        this(indicator.getTimeSeries());
+        this.timeFrame = timeFrame;
     }
 
     @Override
@@ -121,22 +131,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
     }
 
     private int getMaximumResultCount(TimeSeries series) {
-        if (resolvedTimeFrame == -1) {
-            resolvedTimeFrame = getTimeframe();
-        }
-        return resolvedTimeFrame != 0 ? resolvedTimeFrame : series.getMaximumTickCount();
-//        return series.getMaximumTickCount();
-    }
-
-    private Integer getTimeframe() {
-        Field field;
-        try {
-            field = this.getClass().getDeclaredField("timeFrame");
-            field.setAccessible(true);
-            return (Integer) field.get(this);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            return 0;
-        }
+        return timeFrame > 0 ? timeFrame : series.getMaximumTickCount();
     }
 
     /**
@@ -152,7 +147,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
      */
     private void increaseLengthTo(int index, int maxLength) {
         if (highestResultIndex > -1) {
-            if (resolvedTimeFrame <= 0) {
+            if (timeFrame <= 0) {
                 int newResultsCount = Math.min(index - highestResultIndex, maxLength);
                 if (newResultsCount == maxLength) {
                     results.clear();
@@ -174,7 +169,7 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
 
             // workaround for indicators which use timeframe based size and use back-walking (index greater than
             // timeFrame)
-            if (resolvedTimeFrame > 0) {
+            if (timeFrame > 0) {
                 results.addAll(Collections.<T>nCopies(Math.max(index + 1, maxLength), null));
             } else {
                 results.addAll(Collections.<T>nCopies(Math.min(index + 1, maxLength), null));

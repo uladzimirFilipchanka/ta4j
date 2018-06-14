@@ -49,7 +49,7 @@ public class PercentBIndicator extends CachedIndicator<Decimal> {
      * @param k the K multiplier (usually 2.0)
      */
     public PercentBIndicator(Indicator<Decimal> indicator, int timeFrame, Decimal k) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
         this.bbm = new BollingerBandsMiddleIndicator(new SMAIndicator(indicator, timeFrame));
         StandardDeviationIndicator sd = new StandardDeviationIndicator(indicator, timeFrame);

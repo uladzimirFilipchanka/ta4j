@@ -43,8 +43,6 @@ import org.ta4j.core.indicators.helpers.ClosePriceIndicator;
  */
 public class DPOIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-    
     private final int timeShift;
     
     private final Indicator<Decimal> price;
@@ -66,8 +64,7 @@ public class DPOIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public DPOIndicator(Indicator<Decimal> price, int timeFrame) {
-        super(price);
-        this.timeFrame = timeFrame;
+        super(price, timeFrame);
         timeShift = timeFrame / 2 + 1;
         this.price = price;
         sma = new SMAIndicator(price, this.timeFrame);

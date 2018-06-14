@@ -38,17 +38,14 @@ public class UlcerIndexIndicator extends CachedIndicator<Decimal> {
 
     private HighestValueIndicator highestValueInd;
     
-    private int timeFrame;
-
     /**
      * Constructor.
      * @param indicator the indicator
      * @param timeFrame the time frame
      */
     public UlcerIndexIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
         highestValueInd = new HighestValueIndicator(indicator, timeFrame);
     }
 

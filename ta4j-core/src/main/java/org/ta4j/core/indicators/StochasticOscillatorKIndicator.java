@@ -39,8 +39,6 @@ import org.ta4j.core.indicators.helpers.*;
 public class StochasticOscillatorKIndicator extends CachedIndicator<Decimal> {
     private final Indicator<Decimal> indicator;
 
-    private final int timeFrame;
-
     private HighestValueIndicator highestHigh;
     private LowestValueIndicator lowestMin;
 
@@ -51,9 +49,8 @@ public class StochasticOscillatorKIndicator extends CachedIndicator<Decimal> {
 
     public StochasticOscillatorKIndicator(Indicator<Decimal> indicator, int timeFrame,
                                           MaxPriceIndicator maxPriceIndicator, MinPriceIndicator minPriceIndicator) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
 
         highestHigh =  new HighestValueIndicator(maxPriceIndicator, timeFrame);
         lowestMin = new LowestValueIndicator(minPriceIndicator, timeFrame);

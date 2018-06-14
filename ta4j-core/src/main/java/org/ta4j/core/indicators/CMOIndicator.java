@@ -45,7 +45,7 @@ public class CMOIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public CMOIndicator(Indicator<Decimal> price, int timeFrame) {
-        super(price);
+        super(price, timeFrame);
         cumulatedGains = new CumulatedGainsIndicator(price, timeFrame);
         cumulatedLosses = new CumulatedLossesIndicator(price, timeFrame);
     }

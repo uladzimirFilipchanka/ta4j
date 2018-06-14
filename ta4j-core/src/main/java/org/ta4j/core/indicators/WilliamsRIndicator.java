@@ -35,8 +35,6 @@ public class WilliamsRIndicator extends CachedIndicator<Decimal> {
 
     private final Indicator<Decimal> indicator;
 
-    private final int timeFrame;
-
     private MaxPriceIndicator maxPriceIndicator;
 
     private MinPriceIndicator minPriceIndicator;
@@ -50,9 +48,8 @@ public class WilliamsRIndicator extends CachedIndicator<Decimal> {
 
     public WilliamsRIndicator(Indicator<Decimal> indicator, int timeFrame,
             MaxPriceIndicator maxPriceIndicator, MinPriceIndicator minPriceIndicator) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
         this.maxPriceIndicator = maxPriceIndicator;
         this.minPriceIndicator = minPriceIndicator;
     }

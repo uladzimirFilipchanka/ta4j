@@ -35,8 +35,6 @@ public class VarianceIndicator extends CachedIndicator<Decimal> {
 
     private Indicator<Decimal> indicator;
 
-    private int timeFrame;
-
     private SMAIndicator sma;
 
     /**
@@ -45,9 +43,8 @@ public class VarianceIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public VarianceIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
         sma = new SMAIndicator(indicator, timeFrame);
     }
 

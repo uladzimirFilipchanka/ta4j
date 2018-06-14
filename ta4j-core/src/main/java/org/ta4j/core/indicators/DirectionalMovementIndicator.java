@@ -33,13 +33,11 @@ import org.ta4j.core.indicators.helpers.DirectionalUpIndicator;
  */
 public class DirectionalMovementIndicator extends CachedIndicator<Decimal>{
 
-    private final int timeFrame;
     private final DirectionalUpIndicator dup;
     private final DirectionalDownIndicator ddown;
 
     public DirectionalMovementIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         dup = new DirectionalUpIndicator(series, timeFrame);
         ddown = new DirectionalDownIndicator(series, timeFrame);
     }

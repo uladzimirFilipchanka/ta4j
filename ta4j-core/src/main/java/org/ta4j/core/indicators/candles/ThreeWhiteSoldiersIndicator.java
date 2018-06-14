@@ -53,7 +53,7 @@ public class ThreeWhiteSoldiersIndicator extends CachedIndicator<Boolean> {
      * @param factor the factor used when checking if a candle has a very short upper shadow
      */
     public ThreeWhiteSoldiersIndicator(TimeSeries series, int timeFrame, Decimal factor) {
-        super(series);
+        super(series, timeFrame);
         this.series = series;
         upperShadowInd = new UpperShadowIndicator(series);
         averageUpperShadowInd = new SMAIndicator(upperShadowInd, timeFrame);

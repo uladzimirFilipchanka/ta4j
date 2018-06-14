@@ -55,7 +55,7 @@ public class ChandelierExitShortIndicator extends CachedIndicator<Decimal> {
      * @param k the K multiplier for ATR (usually 3.0)
      */
     public ChandelierExitShortIndicator(TimeSeries series, int timeFrame, Decimal k) {
-        super(series);
+        super(series, timeFrame);
         low = new LowestValueIndicator(new MinPriceIndicator(series), timeFrame);
         atr = new AverageTrueRangeIndicator(series, timeFrame);
         this.k = k;

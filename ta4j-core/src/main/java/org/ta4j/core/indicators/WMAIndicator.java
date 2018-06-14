@@ -31,14 +31,11 @@ import org.ta4j.core.Indicator;
  */
 public class WMAIndicator extends CachedIndicator<Decimal> {
 
-    private int timeFrame;
-
     private Indicator<Decimal> indicator;
 
     public WMAIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
     }
 
     @Override

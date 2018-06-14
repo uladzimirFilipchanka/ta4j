@@ -47,7 +47,7 @@ public class SmoothedRSIIndicator extends RSIIndicator {
 
     public SmoothedRSIIndicator(Indicator<Decimal> indicator, int timeFrame) {
         super(new SmoothedAverageGainIndicator(indicator, timeFrame),
-                new SmoothedAverageLossIndicator(indicator, timeFrame));
+                new SmoothedAverageLossIndicator(indicator, timeFrame), timeFrame);
     }
 
     @Override

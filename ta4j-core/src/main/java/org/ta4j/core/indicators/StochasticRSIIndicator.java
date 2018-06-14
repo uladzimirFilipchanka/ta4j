@@ -36,7 +36,6 @@ import org.ta4j.core.indicators.helpers.LowestValueIndicator;
  */
 public class StochasticRSIIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
     private final RSIIndicator rsi;
     private final LowestValueIndicator minRsi;
     private final HighestValueIndicator maxRsi;
@@ -65,8 +64,7 @@ public class StochasticRSIIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public StochasticRSIIndicator(RSIIndicator rsi, int timeFrame) {
-        super(rsi);
-        this.timeFrame = timeFrame;
+        super(rsi, timeFrame);
         this.rsi = rsi;
         minRsi = new LowestValueIndicator(rsi, this.timeFrame);
         maxRsi = new HighestValueIndicator(rsi, this.timeFrame);

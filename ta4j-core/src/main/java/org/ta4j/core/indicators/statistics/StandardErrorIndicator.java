@@ -32,8 +32,6 @@ import org.ta4j.core.indicators.CachedIndicator;
  */
 public class StandardErrorIndicator extends CachedIndicator<Decimal> {
 
-    private int timeFrame;
-    
     private StandardDeviationIndicator sdev;
 
     /**
@@ -42,8 +40,7 @@ public class StandardErrorIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public StandardErrorIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
-        this.timeFrame = timeFrame;
+        super(indicator, timeFrame);
         sdev = new StandardDeviationIndicator(indicator, timeFrame);
     }
 

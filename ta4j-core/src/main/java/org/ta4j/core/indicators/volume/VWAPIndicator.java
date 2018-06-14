@@ -37,8 +37,6 @@ import org.ta4j.core.indicators.helpers.VolumeIndicator;
  */
 public class VWAPIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-    
     private final Indicator<Decimal> typicalPrice;
     
     private final Indicator<Decimal> volume;
@@ -49,8 +47,7 @@ public class VWAPIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public VWAPIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         typicalPrice = new TypicalPriceIndicator(series);
         volume = new VolumeIndicator(series);
     }

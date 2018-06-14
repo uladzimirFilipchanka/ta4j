@@ -36,8 +36,6 @@ import org.ta4j.core.indicators.helpers.MaxPriceIndicator;
  */
 public class AroonUpIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-
     private final HighestValueIndicator highestMaxPriceIndicator;
     private final Indicator<Decimal> maxValueIndicator;
 
@@ -49,8 +47,7 @@ public class AroonUpIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public AroonUpIndicator(TimeSeries series, Indicator<Decimal> maxValueIndicator, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         this.maxValueIndicator = maxValueIndicator;
 
         // + 1 needed for last possible iteration in loop

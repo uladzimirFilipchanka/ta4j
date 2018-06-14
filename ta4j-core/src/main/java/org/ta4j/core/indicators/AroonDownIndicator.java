@@ -37,8 +37,6 @@ import org.ta4j.core.indicators.helpers.MinPriceIndicator;
  */
 public class AroonDownIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-
     private final LowestValueIndicator lowestMinPriceIndicator;
     private final Indicator<Decimal> minValueIndicator;
 
@@ -50,8 +48,7 @@ public class AroonDownIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public AroonDownIndicator(TimeSeries series, Indicator<Decimal> minValueIndicator, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         this.minValueIndicator = minValueIndicator;
 
         // + 1 needed for last possible iteration in loop

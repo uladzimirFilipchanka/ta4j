@@ -37,13 +37,11 @@ import org.ta4j.core.indicators.helpers.AverageTrueRangeIndicator;
 public class DirectionalMovementPlusIndicator extends CachedIndicator<Decimal> {
     private final AverageDirectionalMovementUpIndicator averageDirectionalMovementUpIndicator;
     private final AverageTrueRangeIndicator trueRangeIndicator;
-    private final int timeFrame;
 
     public DirectionalMovementPlusIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         this.averageDirectionalMovementUpIndicator = new AverageDirectionalMovementUpIndicator(series, timeFrame);
         this.trueRangeIndicator = new AverageTrueRangeIndicator(series, timeFrame);
-        this.timeFrame = timeFrame;
     }
 
     @Override

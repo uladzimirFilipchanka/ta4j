@@ -46,7 +46,7 @@ public class CorrelationCoefficientIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public CorrelationCoefficientIndicator(Indicator<Decimal> indicator1, Indicator<Decimal> indicator2, int timeFrame) {
-        super(indicator1);
+        super(indicator1, timeFrame);
         variance1 = new VarianceIndicator(indicator1, timeFrame);
         variance2 = new VarianceIndicator(indicator2, timeFrame);
         covariance = new CovarianceIndicator(indicator1, indicator2, timeFrame);

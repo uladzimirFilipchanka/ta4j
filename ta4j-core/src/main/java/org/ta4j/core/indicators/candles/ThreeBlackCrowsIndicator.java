@@ -53,7 +53,7 @@ public class ThreeBlackCrowsIndicator extends CachedIndicator<Boolean> {
      * @param factor the factor used when checking if a candle has a very short lower shadow
      */
     public ThreeBlackCrowsIndicator(TimeSeries series, int timeFrame, Decimal factor) {
-        super(series);
+        super(series, timeFrame);
         this.series = series;
         lowerShadowInd = new LowerShadowIndicator(series);
         averageLowerShadowInd = new SMAIndicator(lowerShadowInd, timeFrame);

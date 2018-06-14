@@ -34,14 +34,11 @@ import org.ta4j.core.indicators.helpers.MultiplierIndicator;
  */
 public class HMAIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-
     private final WMAIndicator sqrtWma;
     
     public HMAIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
-        this.timeFrame = timeFrame;
-        
+        super(indicator, timeFrame);
+
         WMAIndicator halfWma = new WMAIndicator(indicator, timeFrame / 2);
         WMAIndicator origWma = new WMAIndicator(indicator, timeFrame);
         

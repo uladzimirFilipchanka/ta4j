@@ -40,8 +40,6 @@ public class MassIndexIndicator extends CachedIndicator<Decimal> {
     
     private EMAIndicator doubleEma;
     
-    private int timeFrame;
-
     /**
      * Constructor.
      * @param series the time series
@@ -49,14 +47,13 @@ public class MassIndexIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public MassIndexIndicator(TimeSeries series, int emaTimeFrame, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         Indicator<Decimal> highLowDifferential = new DifferenceIndicator(
                 new MaxPriceIndicator(series),
                 new MinPriceIndicator(series)
         );
         singleEma = new EMAIndicator(highLowDifferential, emaTimeFrame);
         doubleEma = new EMAIndicator(singleEma, emaTimeFrame); // Not the same formula as DoubleEMAIndicator
-        this.timeFrame = timeFrame;
     }
 
     @Override

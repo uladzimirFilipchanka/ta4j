@@ -42,7 +42,7 @@ public class RAVIIndicator extends CachedIndicator<Decimal> {
      * @param longSmaTimeFrame the time frame for the long SMA (usually 65)
      */
     public RAVIIndicator(Indicator<Decimal> price, int shortSmaTimeFrame, int longSmaTimeFrame) {
-        super(price);
+        super(price, Math.max(shortSmaTimeFrame, longSmaTimeFrame));
         shortSma = new SMAIndicator(price, shortSmaTimeFrame);
         longSma = new SMAIndicator(price, longSmaTimeFrame);
     }

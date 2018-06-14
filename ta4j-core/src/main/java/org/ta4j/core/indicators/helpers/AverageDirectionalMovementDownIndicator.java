@@ -31,13 +31,10 @@ import org.ta4j.core.indicators.RecursiveCachedIndicator;
  * <p>
  */
 public class AverageDirectionalMovementDownIndicator extends RecursiveCachedIndicator<Decimal> {
-    private final int timeFrame;
-
     private final DirectionalMovementDownIndicator dmdown;
 
     public AverageDirectionalMovementDownIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         dmdown = new DirectionalMovementDownIndicator(series);
     }
 

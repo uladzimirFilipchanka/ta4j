@@ -39,11 +39,9 @@ public class DirectionalMovementMinusIndicator extends CachedIndicator<Decimal>{
 
     private final AverageDirectionalMovementDownIndicator averageDirectionalMovementDownIndicator;
     private final AverageTrueRangeIndicator trueRangeIndicator;
-    private final int timeFrame;
 
     public DirectionalMovementMinusIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         this.averageDirectionalMovementDownIndicator = new AverageDirectionalMovementDownIndicator(series, timeFrame);
         this.trueRangeIndicator = new AverageTrueRangeIndicator(series, timeFrame);
     }

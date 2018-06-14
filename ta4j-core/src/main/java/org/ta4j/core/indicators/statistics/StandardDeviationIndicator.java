@@ -41,7 +41,7 @@ public class StandardDeviationIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public StandardDeviationIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         variance = new VarianceIndicator(indicator, timeFrame);
     }
 

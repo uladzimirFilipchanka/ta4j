@@ -43,12 +43,9 @@ public class ChaikinMoneyFlowIndicator extends CachedIndicator<Decimal> {
     
     private VolumeIndicator volumeIndicator;
     
-    private int timeFrame;
-
     public ChaikinMoneyFlowIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         this.series = series;
-        this.timeFrame = timeFrame;
         this.clvIndicator = new CloseLocationValueIndicator(series);
         this.volumeIndicator = new VolumeIndicator(series, timeFrame);
     }

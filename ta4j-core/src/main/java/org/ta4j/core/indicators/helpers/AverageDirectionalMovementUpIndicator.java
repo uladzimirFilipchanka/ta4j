@@ -32,13 +32,10 @@ import org.ta4j.core.indicators.RecursiveCachedIndicator;
  */
 public class AverageDirectionalMovementUpIndicator extends RecursiveCachedIndicator<Decimal> {
 
-    private final int timeFrame;
-
     private final DirectionalMovementUpIndicator dmup;
 
     public AverageDirectionalMovementUpIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         dmup = new DirectionalMovementUpIndicator(series);
     }
 

@@ -41,8 +41,6 @@ public class RandomWalkIndexHighIndicator extends CachedIndicator<Decimal> {
     
     private final Decimal sqrtTimeFrame;
     
-    private final int timeFrame;
-    
     /**
      * Constructor.
      *
@@ -50,8 +48,7 @@ public class RandomWalkIndexHighIndicator extends CachedIndicator<Decimal> {
      * @param timeFrame the time frame
      */
     public RandomWalkIndexHighIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         maxPrice = new MaxPriceIndicator(series);
         minPrice = new MinPriceIndicator(series);
         averageTrueRange = new AverageTrueRangeIndicator(series, timeFrame);

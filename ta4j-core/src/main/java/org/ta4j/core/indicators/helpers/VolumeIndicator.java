@@ -34,16 +34,13 @@ public class VolumeIndicator extends CachedIndicator<Decimal> {
 
     private TimeSeries series;
 
-    private int timeFrame;
-    
     public VolumeIndicator(TimeSeries series) {
         this(series, 1);
     }
 
     public VolumeIndicator(TimeSeries series, int timeFrame) {
-        super(series);
+        super(series, timeFrame);
         this.series = series;
-        this.timeFrame = timeFrame;
     }
 
     @Override

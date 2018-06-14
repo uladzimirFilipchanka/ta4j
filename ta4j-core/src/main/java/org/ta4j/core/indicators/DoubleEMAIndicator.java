@@ -32,13 +32,10 @@ import org.ta4j.core.Indicator;
  */
 public class DoubleEMAIndicator extends CachedIndicator<Decimal> {
 
-    private final int timeFrame;
-
     private final EMAIndicator ema;
 
     public DoubleEMAIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
-        this.timeFrame = timeFrame;
+        super(indicator, timeFrame);
         this.ema = new EMAIndicator(indicator, timeFrame);
     }
 

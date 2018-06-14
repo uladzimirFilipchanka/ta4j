@@ -37,7 +37,7 @@ public class AccelerationDecelerationIndicator extends CachedIndicator<Decimal> 
     private SMAIndicator sma5;
 
     public AccelerationDecelerationIndicator(TimeSeries series, int timeFrameSma1, int timeFrameSma2) {
-        super(series);
+        super(series, Math.max(timeFrameSma1, timeFrameSma2));
         this.awesome = new AwesomeOscillatorIndicator(new MedianPriceIndicator(series), timeFrameSma1, timeFrameSma2);
         this.sma5 = new SMAIndicator(awesome, timeFrameSma1);
     }

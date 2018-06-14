@@ -51,12 +51,20 @@ public abstract class RecursiveCachedIndicator<T> extends CachedIndicator<T> {
         super(series);
     }
 
+    public RecursiveCachedIndicator(TimeSeries series, int timeFrame) {
+        super(series, timeFrame);
+    }
+
     /**
      * Constructor.
      * @param indicator a related indicator (with a time series)
      */
     public RecursiveCachedIndicator(Indicator indicator) {
         this(indicator.getTimeSeries());
+    }
+
+    public RecursiveCachedIndicator(Indicator indicator, int timeFrame) {
+        this(indicator.getTimeSeries(), timeFrame);
     }
 
     @Override

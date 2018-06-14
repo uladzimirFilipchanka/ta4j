@@ -33,12 +33,9 @@ public class SMAIndicator extends CachedIndicator<Decimal> {
 
     private final Indicator<Decimal> indicator;
 
-    private final int timeFrame;
-
     public SMAIndicator(Indicator<Decimal> indicator, int timeFrame) {
-        super(indicator);
+        super(indicator, timeFrame);
         this.indicator = indicator;
-        this.timeFrame = timeFrame;
     }
 
     @Override

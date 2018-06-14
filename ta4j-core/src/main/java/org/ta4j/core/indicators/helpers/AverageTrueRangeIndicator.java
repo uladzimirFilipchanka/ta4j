@@ -32,12 +32,10 @@ import org.ta4j.core.indicators.RecursiveCachedIndicator;
  */
 public class AverageTrueRangeIndicator extends RecursiveCachedIndicator<Decimal> {
 
-    private final int timeFrame;
     private final TrueRangeIndicator tr;
 
     public AverageTrueRangeIndicator(TimeSeries series, int timeFrame) {
-        super(series);
-        this.timeFrame = timeFrame;
+        super(series, timeFrame);
         this.tr = new TrueRangeIndicator(series);
     }
     

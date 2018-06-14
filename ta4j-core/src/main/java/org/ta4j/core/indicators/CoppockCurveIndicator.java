@@ -55,7 +55,7 @@ public class CoppockCurveIndicator extends CachedIndicator<Decimal> {
      * @param wmaTimeFrame the time frame (for WMA)
      */
     public CoppockCurveIndicator(Indicator<Decimal> indicator, int longRoCTimeFrame, int shortRoCTimeFrame, int wmaTimeFrame) {
-        super(indicator);
+        super(indicator, Math.max(longRoCTimeFrame, Math.max(shortRoCTimeFrame, wmaTimeFrame)));
         SumIndicator sum = new SumIndicator(
                 new ROCIndicator(indicator, longRoCTimeFrame),
                 new ROCIndicator(indicator, shortRoCTimeFrame)
